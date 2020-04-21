@@ -1,19 +1,33 @@
 <?php
 
+
+
 namespace App\Providers;
 
+
+
+
+use App\Channel;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
-{
+
+
+
+
+class AppServiceProvider extends ServiceProvider {
+	
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
-    {
-        //
+	
+    public function register() {
+		
+		
+		
+        
     }
 
     /**
@@ -21,8 +35,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        //
+	
+    public function boot() {
+		
+		View::share('channels', Channel::all());
+		
+        
     }
 }
