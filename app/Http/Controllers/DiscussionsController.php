@@ -76,7 +76,7 @@ class DiscussionsController extends Controller {
 		
 		session()->flash('success', 'Discussion posted."');
 		
-		return redirect()->route('discussion.index');
+		return redirect()->route('discussions.index');
         
     }
 
