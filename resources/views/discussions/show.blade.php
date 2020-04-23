@@ -4,9 +4,7 @@
 
 
 
-@foreach($discussions as $discussion)
-
-	<div class="card">
+<div class="card">
 				
 		@include('partials.discussion-header')
 
@@ -17,12 +15,13 @@
 				<strong>{{ $discussion->title }}</strong>
 				
 			</div>
+			
+			<hr>
+			
+			{!! $discussion->content !!}
 					
     	</div>
 				
      </div>
-@endforeach
-
-	{{ $discussions->links() }}
 
 @endsection
