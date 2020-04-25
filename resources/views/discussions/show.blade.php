@@ -19,6 +19,50 @@
 			<hr>
 			
 			{!! $discussion->content !!}
+            
+            @if($discussion->bestReply)
+            
+            <div class="card bg-success my-5" style="color: #fff" >
+                
+               <div class="card-header">
+            
+                <div class="d-flex justify-content-between">
+                   
+                    <div>
+                    
+                        <img width="20px" height="20px" style="border-radius: 50%" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
+                    
+                    <strong>
+                    
+                        {{ $discussion->bestReply->owner->name }}
+                    
+                    </strong>
+                        
+                    </div>
+                    
+                    <div>
+                    
+                        <strong>
+                        
+                            <strong>LIKED!</strong>
+                        
+                        </strong>
+                    
+                    </div>
+                    
+                </div>
+            
+                </div>
+                
+                <div class="card-body">
+            
+                    {!! $discussion->bestReply->content !!}
+            
+                </div>
+                
+                </div>
+            
+                @endif
 					
     	</div>
 				
@@ -30,13 +74,34 @@
 
 			<div class="card-header">
 			
-				<div class="d-flex-justify-content-between">
+				<div class="d-flex justify-content-between">
 				
 					<div>
 					
 						<img width="26px" height="26px" style="border-radius: 50%" src="{{ Gravatar::src($reply->owner->email) }}" alt="">
 						
 						<span>{{ $reply->owner->name }}</span>
+						
+					</div>
+					
+					<div>
+					
+						@if(auth()->user()->id === $discussion->user_id)
+						
+						<form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply->id ]) }}" method="POST">
+						
+							@csrf
+                            
+							<div class="text-right">
+							
+                                <button type="submit" class="btn btn-sm btn-info">Like</button>
+                            
+                            </div>
+                            
+						</form>
+						
+						@endif
+						
 						
 					</div>
 				
@@ -48,13 +113,17 @@
 			
 				{!! $reply->content !!}
 			
+                
+                
 			</div>
 			
 		</div>
 
-		{{ $discussion->replies()->paginate(3)->links() }}
+		
 
 	@endforeach
+
+{{ $discussion->replies()->paginate(3)->links() }}
 
 <div class="card my-5">
 

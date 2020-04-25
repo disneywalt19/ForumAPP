@@ -4,10 +4,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Discussion;
-use App\Http\Requests\CreateDiscussionRequest;
+
+
 
 use Illuminate\Http\Request;
+
+use App\Http\Requests\CreateDiscussionRequest;
+
+use App\Discussion;
+
+use App\Reply;
 
 use Illuminate\Support\Str;
 
@@ -130,4 +136,14 @@ class DiscussionsController extends Controller {
     {
         //
     }
+	
+	public function reply(Discussion $discussion, Reply $reply) {
+		
+		$discussion->markAsBestReply($reply);
+		
+		session()->flash('success', 'You Like It.');
+		
+		return redirect()->back();
+		
+	}
 }
