@@ -8,7 +8,6 @@ namespace App;
 
 
 
-
 class Discussion extends Model {
 	
 	public function author() {

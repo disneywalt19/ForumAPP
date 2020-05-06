@@ -11,6 +11,8 @@ use App\Http\Requests\CreateReplyRequest;
 
 use App\Discussion;
 
+use App\Notifications\NewReplyAdded;
+
 
 
 
@@ -51,6 +53,8 @@ class RepliesController extends Controller
 			'discussion_id' => $discussion->id
 			
 		]);
+        
+        $discussion->author->notify(new NewReplyAdded($discussion));
 		
 		session()->flash('success', 'Reply added');
 		
