@@ -4,7 +4,7 @@
 
 namespace App;
 
-
+use App\Notifications\ReplyMarkedAsBestReply;
 
 
 
@@ -47,6 +47,8 @@ class Discussion extends Model {
 			'reply_id' => $reply->id
 			
 		]);
+        
+        $reply->owner->notify(new ReplyMarkedAsBesReply());
 		
 	}
 	

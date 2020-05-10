@@ -86,7 +86,9 @@
 					
 					<div>
 					
-						@if(auth()->user()->id === $discussion->user_id)
+						@auth
+                        
+                        @if(auth()->user()->id === $discussion->user_id)
 						
 						<form action="{{ route('discussions.best-reply', ['discussion' => $discussion->slug, 'reply' => $reply->id ]) }}" method="POST">
 						
@@ -102,6 +104,7 @@
 						
 						@endif
 						
+                        @endauth
 						
 					</div>
 				
