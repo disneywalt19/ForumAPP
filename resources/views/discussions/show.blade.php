@@ -32,21 +32,21 @@
                     
                         <img width="20px" height="20px" style="border-radius: 50%" class="mr-2" src="{{ Gravatar::src($discussion->bestReply->owner->email) }}" alt="">
                     
-                    <strong>
+                        <strong>
                     
-                        {{ $discussion->bestReply->owner->name }}
+                            {{ $discussion->bestReply->owner->name }}
                     
-                    </strong>
+                        </strong>
                         
                     </div>
                     
                     <div>
                     
-                        <strong>
                         
-                            <strong>LIKED!</strong>
                         
-                        </strong>
+                        <strong>LIKED!</strong>
+                        
+                        
                     
                     </div>
                     

@@ -48,7 +48,7 @@ class Discussion extends Model {
 			
 		]);
         
-        $reply->owner->notify(new ReplyMarkedAsBesReply());
+        $reply->owner->notify(new ReplyMarkedAsBestReply($reply->discussion));
 		
 	}
 	

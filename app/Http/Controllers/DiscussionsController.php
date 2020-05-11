@@ -140,9 +140,11 @@ class DiscussionsController extends Controller {
 	public function reply(Discussion $discussion, Reply $reply) {
 		
 		$discussion->markAsBestReply($reply);
+        
 		
 		session()->flash('success', 'You Like It.');
 		
+        
 		return redirect()->back();
 		
 	}

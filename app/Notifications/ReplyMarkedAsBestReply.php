@@ -1,6 +1,9 @@
 <?php
 
+
 namespace App\Notifications;
+
+
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -8,8 +11,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Discussion;
 
-class ReplyMarkedAsBestReply extends Notification
-{
+
+
+class ReplyMarkedAsBestReply extends Notification implements ShouldQueue {
+    
     use Queueable;
 
     public $discussion;
@@ -33,7 +38,7 @@ class ReplyMarkedAsBestReply extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail']['database'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -60,7 +65,7 @@ class ReplyMarkedAsBestReply extends Notification
     {
         return [
             
-            'dicussion' => $this->discussion
+            'discussion' => $this->discussion
             
         ];
     }
