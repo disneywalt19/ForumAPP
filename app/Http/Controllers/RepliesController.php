@@ -54,7 +54,14 @@ class RepliesController extends Controller
 			
 		]);
         
-        $discussion->author->notify(new NewReplyAdded($discussion));
+        
+        if($discussion->author->id !== auth()->user()->id) {
+            
+            $discussion->author->notify(new NewReplyAdded($discussion));
+            
+        }
+        
+        
 		
 		session()->flash('success', 'Reply added');
 		
